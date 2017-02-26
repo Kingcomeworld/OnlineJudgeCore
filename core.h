@@ -15,9 +15,9 @@ int STACK_SIZE_LIMIT   = 8192;  //程序运行的栈空间大小
 
 int TIME_LIMIT_ADDTION = 0;  //运行时间附加值
 
-int JAVA_TIME_FACTOR   = 3;  //JAVA语言的运行时间放宽倍数
+int JAVA_TIME_FACTOR   = 2;  //JAVA语言的运行时间放宽倍数
 
-int JAVA_MEM_FACTOR    = 3;  //JAVA语言的运行内存放宽倍数
+int JAVA_MEM_FACTOR    = 2;  //JAVA语言的运行内存放宽倍数
 
 //------------------以下是常量----------------------
 
@@ -74,7 +74,7 @@ int lang         = 0; //待评测的程序语言
 int spj_lang     = 0; //SpecialJudge程序的语言
 int time_limit   = 1000;   //MS
 int memory_limit = 65535;  //KB
-int output_limit = 1024000; //KB，输出文件的大小限制
+int output_limit = 1024 * 8; //KB，输出文件的大小限制
 int result       = JUDGE_CONF::SE; //结果代号
 int memory_usage = 0;   //内存使用量
 int time_usage    = 0;  //时间使用量

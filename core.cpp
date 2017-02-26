@@ -520,8 +520,10 @@ void judge() {
                     case SIGVTALRM:
                     case SIGKILL:
                         FM_LOG_TRACE("Well, Time Limit Exeeded");
-                        PROBLEM::time_usage = 0;
-                        PROBLEM::memory_usage = 0;
+                        // set time limit
+                        PROBLEM::time_usage = PROBLEM::time_limit;
+                        // remain the memory usage
+                        // PROBLEM::memory_usage = 0;
                         PROBLEM::result = JUDGE_CONF::TLE;
                         break;
                     case SIGXFSZ:
@@ -556,8 +558,9 @@ void judge() {
                     rused.ru_minflt * (getpagesize() / JUDGE_CONF::KILO));
 
             if (PROBLEM::memory_usage > PROBLEM::memory_limit) {
-                PROBLEM::time_usage = 0;
-                PROBLEM::memory_usage = 0;
+                // remain the time_usage
+                // PROBLEM::time_usage = 0;
+                PROBLEM::memory_usage = PROBLEM::memory_limit;
                 PROBLEM::result = JUDGE_CONF::MLE;
                 FM_LOG_TRACE("Well, Memory Limit Exceeded.");
                 ptrace(PTRACE_KILL, executive, NULL, NULL);
@@ -597,15 +600,16 @@ void judge() {
         }
     }
 
+    // remain the time_usage and memory_usage
     //这儿关于time_usage和memory_usage计算的有点混乱
     //主要是为了减轻web的任务
     //只要不是AC，就把time_usage和memory_usage归0
-    if (PROBLEM::result == JUDGE_CONF::SE){
-        PROBLEM::time_usage += (rused.ru_utime.tv_sec * 1000 +
-                                rused.ru_utime.tv_usec / 1000);
-        PROBLEM::time_usage += (rused.ru_stime.tv_sec * 1000 +
-                                rused.ru_stime.tv_usec / 1000);
-    }
+    // if (PROBLEM::result == JUDGE_CONF::SE){
+    //     PROBLEM::time_usage += (rused.ru_utime.tv_sec * 1000 +
+    //                             rused.ru_utime.tv_usec / 1000);
+    //     PROBLEM::time_usage += (rused.ru_stime.tv_sec * 1000 +
+    //                             rused.ru_stime.tv_usec / 1000);
+    // }
 
 }
 

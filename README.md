@@ -1,6 +1,12 @@
 NJUST Open Judge 判题核心(Linux平台)
 =========================
 
+## ChangeLog
+
+1. modify the `core.cpp` in order to display the time and memory when `MLE` and `TLE` happen
+2. modify the `core.h` to set the upper limit of `OLE` from `100MB` to `8MB`
+3. modify the `core.h` to set both `JAVA_TIME_FACTOR` and `JAVA_MEM_FACTOR` from 3 to 2
+
 ## 综述
 
 此判题核心程序通过构建一个沙盒，运行用户提交的代码，
@@ -107,5 +113,3 @@ int main()
 第三行：内存消耗，不带单位，默认KB
 
 接下来所有行：额外信息，一般情况下为空，当`Compile Error`时，编译错误信息存在这里
-
-
